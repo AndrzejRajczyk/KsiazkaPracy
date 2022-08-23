@@ -21,8 +21,8 @@ public class MainViev extends VerticalLayout {
 
     private ZbiorkaService zbiorkaService = ZbiorkaService.getInstance();
     private Grid <Zbiorka> grid = new Grid<>(Zbiorka.class);
-    private TextField filtrData = new TextField();
-    private TextField zajęcia = new TextField();
+    private TextField filtrAutor = new TextField();
+    private TextField autor = new TextField();
 
 
 
@@ -36,12 +36,12 @@ public class MainViev extends VerticalLayout {
 
 
         grid.setSelectionMode (Grid.SelectionMode.SINGLE);
-        filtrData.addValueChangeListener(e -> update());
-        filtrData.setPlaceholder("Filtruj po dacie");
-        filtrData.setClearButtonVisible(true);
-        filtrData.addValueChangeListener(e -> update());
-        filtrData.setValueChangeMode(ValueChangeMode.ON_CHANGE);
-        add(filtrData, grid);
+        filtrAutor.addValueChangeListener(e -> update());
+        filtrAutor.setPlaceholder("Filtruj po autorze");
+        filtrAutor.setClearButtonVisible(true);
+        filtrAutor.addValueChangeListener(e -> update());
+        filtrAutor.setValueChangeMode(ValueChangeMode.EAGER);
+        add(filtrAutor, grid);
         add(grid);
         setSizeFull();
 
@@ -59,7 +59,7 @@ public class MainViev extends VerticalLayout {
         System.out.println(zbiorkaService.getZbiorki());
     }
     public void update(){
-        grid.setItems(zbiorkaService.findByDate(filtrData.getValue()));
+        grid.setItems(zbiorkaService.findByAutor(filtrAutor.getValue()));
         System.out.println(zbiorkaService.getZbiorki());
     }
 }

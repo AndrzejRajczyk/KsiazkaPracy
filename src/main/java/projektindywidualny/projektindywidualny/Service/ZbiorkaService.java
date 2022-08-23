@@ -3,6 +3,7 @@ package projektindywidualny.projektindywidualny.Service;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.Route;
 import projektindywidualny.projektindywidualny.ksiazka.Domain.Komentarze;
 import projektindywidualny.projektindywidualny.ksiazka.Domain.Zajecie;
 import projektindywidualny.projektindywidualny.ksiazka.Domain.Zbiorka;
@@ -11,7 +12,7 @@ import java.awt.event.TextEvent;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-
+@Route
 public class ZbiorkaService {
     private Set<Zbiorka> zbiorki;
     private static ZbiorkaService zbiorkaService;
@@ -32,14 +33,14 @@ public class ZbiorkaService {
     }
     public void addZbiorki(Zbiorka zbiorka) {this.zbiorki.add(zbiorka);
     }
-    public Set <Zbiorka> findByDate(String date){
+    public Set <Zbiorka> findByAutor(String autor){
         return zbiorki.stream()
-                .filter(zbiorka->zbiorka.getData().contains(date))
+                .filter(zbiorka->zbiorka.getAutor().toLowerCase().contains(autor.toLowerCase()))
                 .collect(Collectors.toSet());
     }
 
     private Set<Zbiorka> exampleZbiorki() {
-     //tu dać konstruktor zapytania HTTP
+     //tu dać  zapytania HTTP
 
     Set <Zbiorka> zbiorki = new HashSet<>();
     Komentarze kometarz1 = new Komentarze("Drużynowa","Komentarz nr 1");
