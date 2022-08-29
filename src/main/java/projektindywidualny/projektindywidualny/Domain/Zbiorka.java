@@ -1,4 +1,4 @@
-package projektindywidualny.projektindywidualny.ksiazka.Domain;
+package projektindywidualny.projektindywidualny.Domain;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.textfield.TextField;
@@ -27,7 +27,9 @@ public class Zbiorka {
 
     private Integer czasZbiorki;
 
-    private ZbiorkaType Zatwierdzona;
+    private ZbiorkaType zatwierdzona;
+
+
 
 
 
@@ -40,4 +42,5 @@ public class Zbiorka {
         this.zajecia = zajecia;
         this.czasZbiorki = czasZbiorki;
     }
+
 }

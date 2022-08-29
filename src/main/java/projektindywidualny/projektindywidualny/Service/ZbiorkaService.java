@@ -1,25 +1,32 @@
 package projektindywidualny.projektindywidualny.Service;
 
 
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
-import projektindywidualny.projektindywidualny.ksiazka.Domain.Komentarze;
-import projektindywidualny.projektindywidualny.ksiazka.Domain.Zajecie;
-import projektindywidualny.projektindywidualny.ksiazka.Domain.Zbiorka;
+import lombok.Getter;
+import lombok.Setter;
+import projektindywidualny.projektindywidualny.Domain.Komentarze;
+import projektindywidualny.projektindywidualny.Domain.Zajecie;
+import projektindywidualny.projektindywidualny.Domain.Zbiorka;
 
-import java.awt.event.TextEvent;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+
+
+
 @Route
+@Setter
+@Getter
 public class ZbiorkaService {
     private Set<Zbiorka> zbiorki;
     private static ZbiorkaService zbiorkaService;
     private TextField textField;
+    private Binder<Zbiorka> binder = new Binder(Zbiorka.class);
 
-
-    private ZbiorkaService() {
+    public ZbiorkaService() {
         this.zbiorki = exampleZbiorki();
     }
     public static ZbiorkaService getInstance(){
@@ -38,6 +45,28 @@ public class ZbiorkaService {
                 .filter(zbiorka->zbiorka.getAutor().toLowerCase().contains(autor.toLowerCase()))
                 .collect(Collectors.toSet());
     }
+    public void   removeZbiorka(Zbiorka zbiorka){
+        zbiorki.remove(zbiorka);
+
+    }
+    public void save(Zbiorka zbiorka){
+        this.zbiorki.add(zbiorka);
+    }
+    public void delete(Zbiorka zbiorka){
+        this.zbiorki.remove(zbiorka);
+    }
+    public void setZbiorka(Zbiorka zbiorka){
+        binder.setBean(zbiorka);
+       // if (zbiorka == null) {
+       //     setVisible();
+
+      //  } else {
+         //   setVisible();
+            //autor.focus();
+
+
+        }
+
 
     private Set<Zbiorka> exampleZbiorki() {
      //tu dać  zapytania HTTP
@@ -65,5 +94,6 @@ public class ZbiorkaService {
     System.out.println(zbiorki);
 return  zbiorki;
     }
+
 
 }

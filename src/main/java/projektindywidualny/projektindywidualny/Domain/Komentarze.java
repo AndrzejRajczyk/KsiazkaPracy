@@ -1,4 +1,4 @@
-package projektindywidualny.projektindywidualny.ksiazka.Domain;
+package projektindywidualny.projektindywidualny.Domain;
 
 import lombok.*;
 
